@@ -1,0 +1,524 @@
+/*
+ * 1024 x 768 three-axis mill theme.
+ * High contrast, touch-friendly controls and a restrained Probe Basic-inspired palette.
+ */
+
+QMainWindow,
+QWidget#centralwidget {
+    background: #0e141b;
+    color: #dce6ee;
+    font-family: "Noto Sans CJK SC", "WenQuanYi Micro Hei", "DejaVu Sans", sans-serif;
+    font-size: 12px;
+}
+
+QFrame#headerFrame,
+QFrame#axisPanel,
+QFrame#workspacePanel,
+StateEnableGridLayout#jogPanel,
+QFrame#spindlePanel,
+QFrame#overridePanel,
+QFrame#cyclePanel,
+QFrame#statusFrame {
+    background: #18222d;
+    border: 1px solid #2b3b4a;
+    border-radius: 6px;
+}
+
+QFrame#headerFrame {
+    border-bottom: 2px solid #21a5c7;
+}
+
+QLabel#brandLabel {
+    color: #f2f7fa;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+QLabel#screenLabel {
+    color: #7e95a8;
+    font-size: 14px;
+}
+
+QLabel#axisTitle,
+QLabel#jogTitle,
+QLabel#cycleTitle,
+QLabel#spindleControlTitle,
+QLabel#overrideTitle,
+QLabel#fileText {
+    color: #f2f7fa;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+QFrame#axisRowX,
+QFrame#axisRowY,
+QFrame#axisRowZ,
+QFrame#axisRow4,
+QFrame#axisRow5 {
+    background: #101820;
+    border: 1px solid #273747;
+    border-radius: 5px;
+}
+
+QLabel#axisX,
+QLabel#axisY,
+QLabel#axisZ,
+QLabel#axis4Label,
+QLabel#axis5Label {
+    color: #5cc8e8;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+DROLabel {
+    color: #f4fbff;
+    background: transparent;
+    border: 0;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 29px;
+    font-weight: 700;
+}
+
+QFrame#axisPanel[axisCount="4"] DROLabel {
+    font-size: 26px;
+}
+
+QFrame#axisPanel[axisCount="5"] DROLabel {
+    font-size: 22px;
+}
+
+QLabel#axis_config_label {
+    color: #60d6f2;
+    background: #0e161e;
+    border: 1px solid #304557;
+    border-radius: 4px;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 11px;
+}
+
+QLabel#jogCenter {
+    color: #648096;
+    border: 1px solid #304456;
+    border-radius: 4px;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-weight: 700;
+}
+
+StatusLabel#machine_state,
+StatusLabel#machine_state_bottom,
+StatusLabel#work_offset_label,
+StatusLabel#tool_number,
+StatusLabel#spindle_speed,
+StatusLabel#feed_override_value,
+StatusLabel#rapid_override_value,
+StatusLabel#jog_rate_value {
+    color: #60d6f2;
+    background: #0e161e;
+    border: 1px solid #304557;
+    border-radius: 4px;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-weight: 700;
+}
+
+StatusLabel#loaded_file {
+    color: #9eb2c3;
+    font-family: "DejaVu Sans Mono", monospace;
+}
+
+StatusLabel#clock,
+QLabel#machineStatusText,
+QLabel#homedText,
+QLabel#toolText,
+QLabel#spindleText,
+QLabel#incrementText,
+QLabel#mdiTitle,
+QLabel#feedOverrideText,
+QLabel#rapidOverrideText {
+    color: #91a7b8;
+}
+
+QLabel#spindle_load_value {
+    color: #60d6f2;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-weight: 700;
+}
+
+QLabel#spindleLoadMinimum,
+QLabel#spindleLoadMaximum {
+    color: #71899b;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 10px;
+}
+
+QPushButton,
+ActionButton {
+    color: #e7eef3;
+    background: #253340;
+    border: 1px solid #3b5062;
+    border-radius: 5px;
+    padding: 4px 7px;
+    font-weight: 600;
+}
+
+QPushButton:hover,
+ActionButton:hover {
+    background: #304354;
+    border-color: #58bdd8;
+}
+
+QPushButton:pressed,
+ActionButton:pressed,
+QPushButton:checked,
+ActionButton:checked {
+    color: #071115;
+    background: #52c4df;
+    border-color: #8ce6f7;
+}
+
+QPushButton:disabled,
+ActionButton:disabled {
+    color: #60717e;
+    background: #182129;
+    border-color: #27333d;
+}
+
+QPushButton#btn_home_all {
+    color: #f4f7f9;
+    background: #344453;
+}
+
+ActionButton#btn_machine_on {
+    background: #174934;
+    border-color: #2c9c68;
+}
+
+ActionButton#btn_machine_on:checked {
+    color: #082016;
+    background: #55d895;
+}
+
+ActionButton#btn_estop,
+ActionButton#cycle_stop {
+    color: #fff5f5;
+    background: #a82f38;
+    border-color: #ef5964;
+}
+
+ActionButton#btn_estop:pressed,
+ActionButton#cycle_stop:pressed {
+    background: #f05b65;
+}
+
+ActionButton#cycle_start {
+    color: #071711;
+    background: #48cd89;
+    border-color: #79eaae;
+    font-size: 14px;
+}
+
+ActionButton#cycle_pause {
+    color: #201604;
+    background: #e2a93b;
+    border-color: #f5ca70;
+}
+
+ActionButton#zero_x,
+ActionButton#zero_y,
+ActionButton#zero_z,
+ActionButton#zero_axis4,
+ActionButton#zero_axis5 {
+    padding: 2px;
+    font-size: 11px;
+}
+
+ActionButton#jog_x_neg,
+ActionButton#jog_x_pos,
+ActionButton#jog_y_neg,
+ActionButton#jog_y_pos,
+ActionButton#jog_z_neg,
+ActionButton#jog_z_pos,
+ActionButton#jog_axis4_neg,
+ActionButton#jog_axis4_pos,
+ActionButton#jog_axis5_neg,
+ActionButton#jog_axis5_pos {
+    background: #273b4b;
+    border-color: #47677d;
+    font-size: 14px;
+}
+
+QLineEdit,
+QSpinBox,
+MDILine,
+QComboBox,
+JogIncrements {
+    color: #f0f6fa;
+    background: #0d151c;
+    border: 1px solid #3a5265;
+    border-radius: 4px;
+    padding: 5px 8px;
+    selection-background-color: #2a9dbb;
+}
+
+QLineEdit:focus,
+QSpinBox:focus,
+MDILine:focus,
+QComboBox:focus,
+JogIncrements:focus {
+    border: 1px solid #5cd1ef;
+}
+
+QSpinBox#spindle_speed_set {
+    color: #60d6f2;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+QPushButton#set_spindle_speed {
+    background: #1d7088;
+    border-color: #39b6d6;
+}
+
+QProgressBar#spindle_load_bar {
+    background: #0c141b;
+    border: 1px solid #2d4050;
+    border-radius: 4px;
+}
+
+QProgressBar#spindle_load_bar::chunk {
+    background: #45c5e6;
+    border-radius: 3px;
+}
+
+QLabel#machineStatusText {
+    color: #f2f7fa;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-weight: 700;
+}
+
+QTabWidget::pane {
+    background: #101820;
+    border: 1px solid #2d4050;
+    border-radius: 4px;
+}
+
+QTabBar::tab {
+    color: #93a8b9;
+    background: #202d38;
+    border: 1px solid #304252;
+    border-bottom: 0;
+    min-width: 82px;
+    min-height: 27px;
+    padding: 2px 8px;
+}
+
+QTabBar::tab:selected {
+    color: #eef7fb;
+    background: #1d7088;
+    border-color: #39b6d6;
+}
+
+QTableView,
+QAbstractItemView,
+QPlainTextEdit,
+QTextEdit {
+    color: #dbe7ee;
+    background: #0c1319;
+    alternate-background-color: #121d25;
+    border: 0;
+    gridline-color: #2a3946;
+    selection-color: #061217;
+    selection-background-color: #55c8e3;
+}
+
+QHeaderView::section {
+    color: #dce7ed;
+    background: #263643;
+    border: 0;
+    border-right: 1px solid #3b4d5c;
+    padding: 4px;
+    font-weight: 600;
+}
+
+QSlider::groove:horizontal {
+    height: 6px;
+    background: #0c141b;
+    border: 1px solid #2d4050;
+    border-radius: 3px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #39b8d8;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    width: 18px;
+    margin: -7px 0;
+    background: #e7f3f7;
+    border: 1px solid #5fcce7;
+    border-radius: 9px;
+}
+
+QToolTip {
+    color: #eef6fa;
+    background: #263641;
+    border: 1px solid #5b788b;
+}
+
+/* Shared touchscreen dialogs: coordinate/tool calculator and text entry. */
+QDialog {
+    background: #18222d;
+    color: #dce6ee;
+    font-family: "Noto Sans CJK SC", "WenQuanYi Micro Hei", "DejaVu Sans", sans-serif;
+    font-size: 14px;
+}
+
+QDialog QLabel,
+QDialog QGroupBox {
+    color: #dce6ee;
+    background: transparent;
+}
+
+QDialog QLineEdit,
+QDialog QDoubleSpinBox {
+    color: #60d6f2;
+    background: #0d151c;
+    border: 1px solid #3a5265;
+    border-radius: 5px;
+    padding: 6px 10px;
+    min-height: 32px;
+    selection-color: #061217;
+    selection-background-color: #55c8e3;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 22px;
+}
+
+QDialog QLineEdit:focus,
+QDialog QDoubleSpinBox:focus {
+    border-color: #5cd1ef;
+}
+
+QDialog QToolButton,
+QDialog QPushButton {
+    color: #e7eef3;
+    background: #253340;
+    border: 1px solid #3b5062;
+    border-radius: 5px;
+    padding: 5px 8px;
+    min-height: 28px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QDialog QToolButton:hover,
+QDialog QPushButton:hover {
+    background: #304354;
+    border-color: #58bdd8;
+}
+
+QDialog QToolButton:pressed,
+QDialog QToolButton:checked,
+QDialog QPushButton:pressed {
+    color: #071115;
+    background: #52c4df;
+    border-color: #8ce6f7;
+}
+
+QDialog QToolButton:disabled,
+QDialog QPushButton:disabled {
+    color: #60717e;
+    background: #182129;
+    border-color: #27333d;
+}
+
+QDialog QDialogButtonBox QPushButton {
+    min-width: 80px;
+    min-height: 32px;
+}
+
+QDialog QDialogButtonBox QPushButton:default {
+    background: #1d7088;
+    border-color: #39b6d6;
+}
+
+QDialog QMenu {
+    color: #dce6ee;
+    background: #18222d;
+    border: 1px solid #3b5062;
+}
+
+QDialog QMenu::item:selected {
+    color: #eef7fb;
+    background: #1d7088;
+}
+
+QDialog VirtualKeyboard QPushButton {
+    padding: 2px 1px;
+    font-size: 12px;
+}
+
+QLabel#startup_code_label {
+    color: #91a7b8;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 10px;
+}
+
+/* Shared feedback for spindle and coolant controls. */
+QPushButton#spindle_fwd:checked,
+QPushButton#spindle_rev:checked,
+QPushButton#spindle_stop:checked,
+ActionButton#coolant_flood:checked,
+ActionButton#coolant_mist:checked {
+    color: #071115;
+    background: #52c4df;
+    border: 1px solid #8ce6f7;
+}
+
+QPushButton#spindle_fwd:pressed,
+QPushButton#spindle_rev:pressed,
+QPushButton#spindle_stop:pressed,
+ActionButton#coolant_flood:pressed,
+ActionButton#coolant_mist:pressed {
+    color: #071115;
+    background: #8ce6f7;
+    border: 1px solid #c5f4ff;
+    padding-top: 6px;
+    padding-bottom: 2px;
+}
+
+/* Settings pages share the main screen palette. */
+QWidget#settingsPage, QWidget#diagnosticsPage,
+QWidget#interfaceSettingsPage, QWidget#machineInfoPage {
+    background: #101820;
+    color: #dce6ee;
+}
+QWidget#settingsPage QLabel, QWidget#settingsPage QCheckBox {
+    color: #b9cedd;
+    font-size: 12px;
+}
+QWidget#settingsPage QCheckBox { spacing: 10px; padding: 5px; }
+QWidget#settingsPage QCheckBox::indicator {
+    width: 20px; height: 20px;
+    background: #0d151c; border: 1px solid #3b5062; border-radius: 4px;
+}
+QWidget#settingsPage QCheckBox::indicator:checked {
+    background: #52c4df; border: 2px solid #8ce6f7;
+}
+QLabel#settings_machine_info { font-size: 12px; }
+
+QPushButton#btn_home_all:checked {
+    color: #071115;
+    background: #52c4df;
+    border-color: #8ce6f7;
+}
+QPushButton#btn_home_all:disabled {
+    color: #60717e;
+    background: #182129;
+    border-color: #27333d;
+}
+
+/* Default text color for labels without a dedicated rule. */
+QLabel { color: #dce6ee; }

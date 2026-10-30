@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.log
+*.pref
+*.var
+*.var.bak
+build/
+dist/
+*.backup-*
+.DS_Store

@@ -1,0 +1,22 @@
+; MillPilot integration fragment — merge into an EXISTING machine INI.
+; Do not replace the complete INI, KINS, JOINT or hardware HAL sections.
+[DISPLAY]
+DISPLAY = qtvcp -c qtvcp cnc_3axis_1024
+INCREMENTS = Continuous, 5 mm, 1 mm, 0.5 mm, 0.1 mm, 0.01 mm
+; Match the real machine geometry / rotary order, e.g. XYZ, XYZA, XYZAC.
+GEOMETRY = XYZ
+; Preserve your existing feedback and speed/override limits.
+; POSITION_OFFSET = RELATIVE
+; POSITION_FEEDBACK = ACTUAL
+; DEFAULT_SPINDLE_0_SPEED = 1000
+; MIN_SPINDLE_0_SPEED = 100
+; MAX_SPINDLE_0_SPEED = 24000
+
+[RS274NGC]
+; Optional, changes interpreter startup modes; choose values for your machine.
+; MillPilot displays this setting in its bottom status bar if present.
+; RS274NGC_STARTUP_CODE = G21 G40 G90 G94 G97 G64 P0.025
+
+[HAL]
+; Connect after the GUI has created its pins.
+; POSTGUI_HALFILE = millpilot_postgui.hal

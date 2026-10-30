@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>MillPilot contributors</author>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>1024</width><height>768</height></rect>
+  </property>
+  <property name="minimumSize">
+   <size><width>1024</width><height>768</height></size>
+  </property>
+  <property name="maximumSize">
+   <size><width>1024</width><height>768</height></size>
+  </property>
+  <property name="windowTitle">
+   <string>MillPilot 铣控</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="ScreenOptions" name="screen_options">
+    <property name="geometry">
+     <rect><x>-20</x><y>-20</y><width>16</width><height>16</height></rect>
+    </property>
+    <property name="notify_option" stdset="0"><bool>true</bool></property>
+    <property name="catch_close_option" stdset="0"><bool>true</bool></property>
+    <property name="closeDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="catch_errors_option" stdset="0"><bool>true</bool></property>
+    <property name="fileDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="toolDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="entryDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="keyboardDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="calculatorDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="originOffsetDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="toolOffsetDialog_option" stdset="0"><bool>true</bool></property>
+    <property name="focusOverlay_option" stdset="0"><bool>true</bool></property>
+    <property name="use_pref_file_option" stdset="0"><bool>true</bool></property>
+    <property name="pref_filename_string" stdset="0"><string>CONFIGFOLDER/cnc_3axis_1024.pref</string></property>
+   </widget>
+   <layout class="QVBoxLayout" name="rootLayout">
+    <property name="spacing"><number>7</number></property>
+    <property name="leftMargin"><number>8</number></property>
+    <property name="topMargin"><number>8</number></property>
+    <property name="rightMargin"><number>8</number></property>
+    <property name="bottomMargin"><number>8</number></property>
+    <item>
+     <widget class="QFrame" name="headerFrame">
+      <property name="minimumSize"><size><width>0</width><height>62</height></size></property>
+      <property name="maximumSize"><size><width>16777215</width><height>62</height></size></property>
+      <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+      <layout class="QHBoxLayout" name="headerLayout">
+       <property name="spacing"><number>8</number></property>
+       <property name="leftMargin"><number>14</number></property>
+       <property name="topMargin"><number>7</number></property>
+       <property name="rightMargin"><number>8</number></property>
+       <property name="bottomMargin"><number>7</number></property>
+       <item>
+        <widget class="QLabel" name="brandLabel">
+         <property name="minimumSize"><size><width>210</width><height>44</height></size></property>
+         <property name="text"><string>MillPilot 铣控</string></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="screenLabel">
+         <property name="text"><string>多轴加工中心</string></property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="headerSpacer">
+         <property name="orientation"><enum>Qt::Horizontal</enum></property>
+         <property name="sizeHint" stdset="0"><size><width>30</width><height>20</height></size></property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="StateLED" name="led_all_homed">
+         <property name="minimumSize"><size><width>20</width><height>20</height></size></property>
+         <property name="maximumSize"><size><width>20</width><height>20</height></size></property>
+         <property name="diameter"><number>14</number></property>
+         <property name="color"><color><red>61</red><green>220</green><blue>151</blue></color></property>
+         <property name="is_homed_status" stdset="0"><bool>true</bool></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="homedText"><property name="text"><string>已回零</string></property></widget>
+       </item>
+       <item>
+        <widget class="StatusLabel" name="machine_state">
+         <property name="minimumSize"><size><width>90</width><height>38</height></size></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+         <property name="text"><string>设备状态</string></property>
+         <property name="textTemplate" stdset="0"><string>%s</string></property>
+         <property name="machine_state_status" stdset="0"><bool>true</bool></property>
+         <property name="state_label_list" stdset="0">
+          <stringlist>
+           <string>急停</string><string>运行中</string><string>已停止</string>
+           <string>已暂停</string><string>等待中</string><string>读取中</string>
+          </stringlist>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_home_all">
+         <property name="checkable"><bool>true</bool></property>
+         <property name="minimumSize"><size><width>92</width><height>46</height></size></property>
+         <property name="text"><string>全部回零</string></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="ActionButton" name="btn_machine_on">
+         <property name="minimumSize"><size><width>96</width><height>46</height></size></property>
+         <property name="text"><string>设备关闭</string></property>
+         <property name="checkable"><bool>true</bool></property>
+         <property name="indicator_status_option" stdset="0"><bool>true</bool></property>
+         <property name="is_on_status" stdset="0"><bool>true</bool></property>
+         <property name="checked_state_text_option" stdset="0"><bool>true</bool></property>
+         <property name="true_state_string" stdset="0"><string>设备开启</string></property>
+         <property name="false_state_string" stdset="0"><string>设备关闭</string></property>
+         <property name="machine_on_action" stdset="0"><bool>true</bool></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="ActionButton" name="btn_estop">
+         <property name="minimumSize"><size><width>104</width><height>46</height></size></property>
+         <property name="text"><string>急停复位</string></property>
+         <property name="checkable"><bool>true</bool></property>
+         <property name="indicator_status_option" stdset="0"><bool>true</bool></property>
+         <property name="is_estopped_status" stdset="0"><bool>true</bool></property>
+         <property name="estop_action" stdset="0"><bool>true</bool></property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="mainGrid" columnstretch="30,23,23,23" rowstretch="63,37">
+      <property name="horizontalSpacing"><number>7</number></property>
+      <property name="verticalSpacing"><number>7</number></property>
+      <item row="0" column="0">
+       <widget class="QFrame" name="axisPanel">
+        <property name="minimumSize"><size><width>292</width><height>392</height></size></property>
+        <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+        <layout class="QVBoxLayout" name="axisLayout">
+         <property name="spacing"><number>5</number></property>
+         <property name="leftMargin"><number>10</number></property>
+         <property name="topMargin"><number>8</number></property>
+         <property name="rightMargin"><number>10</number></property>
+         <property name="bottomMargin"><number>8</number></property>
+         <item>
+          <layout class="QHBoxLayout" name="axisTitleLayout">
+           <item><widget class="QLabel" name="axisTitle"><property name="text"><string>坐标位置</string></property></widget></item>
+           <item><spacer name="axisTitleSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>20</height></size></property></spacer></item>
+           <item><widget class="QLabel" name="axis_config_label"><property name="minimumSize"><size><width>72</width><height>28</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="text"><string>3轴 XYZ</string></property></widget></item>
+           <item>
+            <widget class="StatusLabel" name="work_offset_label">
+             <property name="minimumSize"><size><width>54</width><height>28</height></size></property>
+             <property name="alignment"><set>Qt::AlignCenter</set></property>
+             <property name="text"><string>G54</string></property>
+             <property name="textTemplate" stdset="0"><string>%s</string></property>
+             <property name="user_system_status" stdset="0"><bool>true</bool></property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QFrame" name="axisRowX">
+           <property name="minimumSize"><size><width>0</width><height>48</height></size></property>
+           <layout class="QHBoxLayout" name="axisXLayout">
+            <property name="spacing"><number>5</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>6</number></property><property name="bottomMargin"><number>4</number></property>
+            <item><widget class="QLabel" name="axisX"><property name="minimumSize"><size><width>30</width><height>0</height></size></property><property name="maximumSize"><size><width>30</width><height>16777215</height></size></property><property name="text"><string>X</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+            <item><widget class="StateLED" name="home_x"><property name="minimumSize"><size><width>18</width><height>18</height></size></property><property name="maximumSize"><size><width>18</width><height>18</height></size></property><property name="diameter"><number>12</number></property><property name="color"><color><red>61</red><green>220</green><blue>151</blue></color></property><property name="is_joint_homed_status" stdset="0"><bool>true</bool></property><property name="joint_number_status" stdset="0"><number>0</number></property></widget></item>
+            <item><widget class="DROLabel" name="dro_x"><property name="text"><string>+000.000</string></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="Qjoint_number" stdset="0"><number>0</number></property></widget></item>
+            <item><widget class="ActionButton" name="zero_x"><property name="minimumSize"><size><width>48</width><height>42</height></size></property><property name="maximumSize"><size><width>48</width><height>42</height></size></property><property name="text"><string>置零</string></property><property name="zero_axis_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>0</number></property><property name="axis_letter" stdset="0"><string>X</string></property></widget></item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="axisRowY">
+           <property name="minimumSize"><size><width>0</width><height>48</height></size></property>
+           <layout class="QHBoxLayout" name="axisYLayout">
+            <property name="spacing"><number>5</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>6</number></property><property name="bottomMargin"><number>4</number></property>
+            <item><widget class="QLabel" name="axisY"><property name="minimumSize"><size><width>30</width><height>0</height></size></property><property name="maximumSize"><size><width>30</width><height>16777215</height></size></property><property name="text"><string>Y</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+            <item><widget class="StateLED" name="home_y"><property name="minimumSize"><size><width>18</width><height>18</height></size></property><property name="maximumSize"><size><width>18</width><height>18</height></size></property><property name="diameter"><number>12</number></property><property name="color"><color><red>61</red><green>220</green><blue>151</blue></color></property><property name="is_joint_homed_status" stdset="0"><bool>true</bool></property><property name="joint_number_status" stdset="0"><number>1</number></property></widget></item>
+            <item><widget class="DROLabel" name="dro_y"><property name="text"><string>+000.000</string></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="Qjoint_number" stdset="0"><number>1</number></property></widget></item>
+            <item><widget class="ActionButton" name="zero_y"><property name="minimumSize"><size><width>48</width><height>42</height></size></property><property name="maximumSize"><size><width>48</width><height>42</height></size></property><property name="text"><string>置零</string></property><property name="zero_axis_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>1</number></property><property name="axis_letter" stdset="0"><string>Y</string></property></widget></item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="axisRowZ">
+           <property name="minimumSize"><size><width>0</width><height>48</height></size></property>
+           <layout class="QHBoxLayout" name="axisZLayout">
+            <property name="spacing"><number>5</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>6</number></property><property name="bottomMargin"><number>4</number></property>
+            <item><widget class="QLabel" name="axisZ"><property name="minimumSize"><size><width>30</width><height>0</height></size></property><property name="maximumSize"><size><width>30</width><height>16777215</height></size></property><property name="text"><string>Z</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+            <item><widget class="StateLED" name="home_z"><property name="minimumSize"><size><width>18</width><height>18</height></size></property><property name="maximumSize"><size><width>18</width><height>18</height></size></property><property name="diameter"><number>12</number></property><property name="color"><color><red>61</red><green>220</green><blue>151</blue></color></property><property name="is_joint_homed_status" stdset="0"><bool>true</bool></property><property name="joint_number_status" stdset="0"><number>2</number></property></widget></item>
+            <item><widget class="DROLabel" name="dro_z"><property name="text"><string>+000.000</string></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="Qjoint_number" stdset="0"><number>2</number></property></widget></item>
+            <item><widget class="ActionButton" name="zero_z"><property name="minimumSize"><size><width>48</width><height>42</height></size></property><property name="maximumSize"><size><width>48</width><height>42</height></size></property><property name="text"><string>置零</string></property><property name="zero_axis_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>2</number></property><property name="axis_letter" stdset="0"><string>Z</string></property></widget></item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="axisRow4">
+           <property name="minimumSize"><size><width>0</width><height>48</height></size></property>
+           <layout class="QHBoxLayout" name="axis4Layout">
+            <property name="spacing"><number>5</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>6</number></property><property name="bottomMargin"><number>4</number></property>
+            <item><widget class="QLabel" name="axis4Label"><property name="minimumSize"><size><width>30</width><height>0</height></size></property><property name="maximumSize"><size><width>30</width><height>16777215</height></size></property><property name="text"><string>A</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+            <item><widget class="StateLED" name="home_axis4"><property name="minimumSize"><size><width>18</width><height>18</height></size></property><property name="maximumSize"><size><width>18</width><height>18</height></size></property><property name="diameter"><number>12</number></property><property name="color"><color><red>61</red><green>220</green><blue>151</blue></color></property><property name="is_joint_homed_status" stdset="0"><bool>true</bool></property><property name="joint_number_status" stdset="0"><number>3</number></property></widget></item>
+            <item><widget class="DROLabel" name="dro_axis4"><property name="text"><string>+000.000</string></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="Qjoint_number" stdset="0"><number>3</number></property></widget></item>
+            <item><widget class="ActionButton" name="zero_axis4"><property name="minimumSize"><size><width>48</width><height>38</height></size></property><property name="maximumSize"><size><width>48</width><height>38</height></size></property><property name="text"><string>置零</string></property><property name="zero_axis_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>3</number></property><property name="axis_letter" stdset="0"><string>A</string></property></widget></item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="axisRow5">
+           <property name="minimumSize"><size><width>0</width><height>48</height></size></property>
+           <layout class="QHBoxLayout" name="axis5Layout">
+            <property name="spacing"><number>5</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>6</number></property><property name="bottomMargin"><number>4</number></property>
+            <item><widget class="QLabel" name="axis5Label"><property name="minimumSize"><size><width>30</width><height>0</height></size></property><property name="maximumSize"><size><width>30</width><height>16777215</height></size></property><property name="text"><string>B</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+            <item><widget class="StateLED" name="home_axis5"><property name="minimumSize"><size><width>18</width><height>18</height></size></property><property name="maximumSize"><size><width>18</width><height>18</height></size></property><property name="diameter"><number>12</number></property><property name="color"><color><red>61</red><green>220</green><blue>151</blue></color></property><property name="is_joint_homed_status" stdset="0"><bool>true</bool></property><property name="joint_number_status" stdset="0"><number>4</number></property></widget></item>
+            <item><widget class="DROLabel" name="dro_axis5"><property name="text"><string>+000.000</string></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="Qjoint_number" stdset="0"><number>4</number></property></widget></item>
+            <item><widget class="ActionButton" name="zero_axis5"><property name="minimumSize"><size><width>48</width><height>38</height></size></property><property name="maximumSize"><size><width>48</width><height>38</height></size></property><property name="text"><string>置零</string></property><property name="zero_axis_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>4</number></property><property name="axis_letter" stdset="0"><string>B</string></property></widget></item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="axisInfoGrid">
+           <property name="horizontalSpacing"><number>6</number></property><property name="verticalSpacing"><number>4</number></property>
+           <item row="0" column="0"><widget class="QLabel" name="toolText"><property name="text"><string>当前刀具</string></property></widget></item>
+           <item row="0" column="1"><widget class="StatusLabel" name="tool_number"><property name="alignment"><set>Qt::AlignCenter</set></property><property name="text"><string>T0</string></property><property name="textTemplate" stdset="0"><string>T%d</string></property><property name="tool_number_status" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="coordinateActionLayout">
+           <property name="spacing"><number>5</number></property>
+           <item><widget class="ActionButton" name="dro_relative"><property name="minimumSize"><size><width>0</width><height>30</height></size></property><property name="text"><string>工件坐标</string></property><property name="dro_relative_action" stdset="0"><bool>true</bool></property></widget></item>
+           <item><widget class="ActionButton" name="dro_absolute"><property name="minimumSize"><size><width>0</width><height>30</height></size></property><property name="text"><string>机床坐标</string></property><property name="dro_absolute_action" stdset="0"><bool>true</bool></property></widget></item>
+           <item><widget class="ActionButton" name="origin_dialog"><property name="minimumSize"><size><width>0</width><height>30</height></size></property><property name="text"><string>设置坐标</string></property><property name="origin_offset_dialog_action" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="3">
+       <widget class="QFrame" name="workspacePanel">
+        <property name="minimumSize"><size><width>0</width><height>392</height></size></property>
+        <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+        <layout class="QVBoxLayout" name="workspaceLayout">
+         <property name="spacing"><number>3</number></property><property name="leftMargin"><number>5</number></property><property name="topMargin"><number>5</number></property><property name="rightMargin"><number>5</number></property><property name="bottomMargin"><number>5</number></property>
+         <item>
+          <layout class="QHBoxLayout" name="fileBarLayout">
+           <item><widget class="QLabel" name="fileText"><property name="text"><string>程序</string></property></widget></item>
+           <item><widget class="StatusLabel" name="loaded_file"><property name="text"><string>未加载文件</string></property><property name="textTemplate" stdset="0"><string>%s</string></property><property name="filename_status" stdset="0"><bool>true</bool></property></widget></item>
+           <item><spacer name="fileSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>20</height></size></property></spacer></item>
+           <item><widget class="ActionButton" name="view_p"><property name="minimumSize"><size><width>46</width><height>30</height></size></property><property name="text"><string>3D</string></property><property name="view_change_action" stdset="0"><bool>true</bool></property><property name="view_type_string" stdset="0"><string>P</string></property></widget></item>
+           <item><widget class="ActionButton" name="view_z"><property name="minimumSize"><size><width>46</width><height>30</height></size></property><property name="text"><string>俯视</string></property><property name="view_change_action" stdset="0"><bool>true</bool></property><property name="view_type_string" stdset="0"><string>Z</string></property></widget></item>
+           <item><widget class="ActionButton" name="zoom_in"><property name="minimumSize"><size><width>38</width><height>30</height></size></property><property name="text"><string>＋</string></property><property name="view_change_action" stdset="0"><bool>true</bool></property><property name="view_type_string" stdset="0"><string>zoom-in</string></property></widget></item>
+           <item><widget class="ActionButton" name="zoom_out"><property name="minimumSize"><size><width>38</width><height>30</height></size></property><property name="text"><string>－</string></property><property name="view_change_action" stdset="0"><bool>true</bool></property><property name="view_type_string" stdset="0"><string>zoom-out</string></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QTabWidget" name="workspaceTabs">
+           <property name="currentIndex"><number>0</number></property>
+           <widget class="QWidget" name="previewPage">
+            <attribute name="title"><string>刀路预览</string></attribute>
+            <layout class="QVBoxLayout" name="previewLayout"><property name="leftMargin"><number>2</number></property><property name="topMargin"><number>2</number></property><property name="rightMargin"><number>2</number></property><property name="bottomMargin"><number>2</number></property><item><widget class="GCodeGraphics" name="gcode_graphics"><property name="background_color" stdset="0"><color><red>12</red><green>20</green><blue>27</blue></color></property><property name="_use_gradient_background" stdset="0"><bool>false</bool></property><property name="_dro" stdset="0"><bool>false</bool></property><property name="MouseWheelInvertZoom" stdset="0"><bool>false</bool></property></widget></item></layout>
+           </widget>
+           <widget class="QWidget" name="programPage">
+            <attribute name="title"><string>程序列表</string></attribute>
+            <layout class="QVBoxLayout" name="programLayout"><property name="leftMargin"><number>2</number></property><property name="topMargin"><number>2</number></property><property name="rightMargin"><number>2</number></property><property name="bottomMargin"><number>2</number></property><item><widget class="GcodeEditor" name="gcode_editor"/></item></layout>
+           </widget>
+           <widget class="QWidget" name="offsetPage">
+            <attribute name="title"><string>工件坐标</string></attribute>
+            <layout class="QVBoxLayout" name="offsetLayout"><property name="leftMargin"><number>2</number></property><property name="topMargin"><number>2</number></property><property name="rightMargin"><number>2</number></property><property name="bottomMargin"><number>2</number></property><item><widget class="OriginOffsetView" name="origin_offsets"><property name="dialog_code_string" stdset="0"><string>CALCULATOR</string></property><property name="text_dialog_code_string" stdset="0"><string>KEYBOARD</string></property><property name="metric_template" stdset="0"><string>%10.3f</string></property><property name="imperial_template" stdset="0"><string>%9.4f</string></property></widget></item></layout>
+           </widget>
+           <widget class="QWidget" name="toolPage">
+            <attribute name="title"><string>刀具表</string></attribute>
+            <layout class="QVBoxLayout" name="toolLayout">
+             <property name="spacing"><number>5</number></property><property name="leftMargin"><number>4</number></property><property name="topMargin"><number>4</number></property><property name="rightMargin"><number>4</number></property><property name="bottomMargin"><number>4</number></property>
+             <item>
+              <layout class="QHBoxLayout" name="toolManageLayout">
+               <property name="spacing"><number>5</number></property>
+               <item><widget class="QPushButton" name="tool_add"><property name="minimumSize"><size><width>92</width><height>32</height></size></property><property name="text"><string>新增刀具</string></property></widget></item>
+               <item><widget class="QPushButton" name="tool_delete"><property name="minimumSize"><size><width>92</width><height>32</height></size></property><property name="text"><string>删除勾选</string></property></widget></item>
+               <item><widget class="QPushButton" name="tool_edit"><property name="minimumSize"><size><width>92</width><height>32</height></size></property><property name="text"><string>修改当前</string></property></widget></item>
+               <item><spacer name="toolManageSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+               <item><widget class="QPushButton" name="tool_reload"><property name="minimumSize"><size><width>92</width><height>32</height></size></property><property name="text"><string>重新载入</string></property></widget></item>
+               <item><widget class="ActionButton" name="tool_settings"><property name="minimumSize"><size><width>92</width><height>32</height></size></property><property name="text"><string>刀具设置</string></property><property name="tool_offset_dialog_action" stdset="0"><bool>true</bool></property></widget></item>
+              </layout>
+             </item>
+             <item><widget class="ToolOffsetView" name="tool_offsets"><property name="dialog_code_string" stdset="0"><string>CALCULATOR</string></property><property name="text_dialog_code_string" stdset="0"><string>KEYBOARD</string></property><property name="metric_template" stdset="0"><string>%10.3f</string></property><property name="imperial_template" stdset="0"><string>%9.4f</string></property></widget></item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="mdiPage">
+            <attribute name="title"><string>MDI</string></attribute>
+            <layout class="QVBoxLayout" name="mdiPageLayout">
+             <property name="spacing"><number>8</number></property><property name="leftMargin"><number>10</number></property><property name="topMargin"><number>10</number></property><property name="rightMargin"><number>10</number></property><property name="bottomMargin"><number>10</number></property>
+             <item>
+              <layout class="QHBoxLayout" name="mdiTitleLayout">
+               <item><widget class="QLabel" name="mdiTitle"><property name="text"><string>MDI 手动指令</string></property></widget></item>
+               <item><spacer name="mdiTitleSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+              </layout>
+             </item>
+             <item><widget class="MDILine" name="mdi_line"><property name="minimumSize"><size><width>0</width><height>42</height></size></property><property name="maximumSize"><size><width>16777215</width><height>42</height></size></property><property name="placeholderText"><string>输入 G0 / G1 / M3 / S8000 等命令后按 Enter</string></property></widget></item>
+             <item><widget class="QLabel" name="mdiHelp"><property name="text"><string>示例：G0 X10 Y20    G1 Z-2 F300    S8000 M3</string></property></widget></item>
+             <item><spacer name="mdiPageSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>80</height></size></property></spacer></item>
+            </layout>
+           </widget>
+<widget class="QWidget" name="settingsPage"><attribute name="title"><string>设置</string></attribute><layout class="QVBoxLayout" name="settingsLayout"><property name="spacing"><number>6</number></property><item><widget class="QTabWidget" name="settingsTabs">
+<widget class="QWidget" name="diagnosticsPage"><attribute name="title"><string>诊断工具</string></attribute><layout class="QVBoxLayout" name="diagnosticsLayout"><item><widget class="QLabel" name="settingsToolsHint"><property name="text"><string>机床诊断与调试工具 · 点击后打开独立窗口</string></property><property name="wordWrap"><bool>true</bool></property></widget></item><item><layout class="QGridLayout" name="diagnosticButtonsLayout"><item row="0" column="0"><widget class="QPushButton" name="settings_ladder"><property name="minimumSize"><size><width>0</width><height>48</height></size></property><property name="text"><string>梯形图
+ClassicLadder</string></property></widget></item><item row="0" column="1"><widget class="ActionButton" name="settings_scope"><property name="minimumSize"><size><width>0</width><height>48</height></size></property><property name="text"><string>HAL 示波器
+halscope</string></property><property name="launch_halscope_action" stdset="0"><bool>true</bool></property></widget></item><item row="0" column="2"><widget class="ActionButton" name="settings_status"><property name="minimumSize"><size><width>0</width><height>48</height></size></property><property name="text"><string>状态
+LinuxCNC Status</string></property><property name="launch_status_action" stdset="0"><bool>true</bool></property></widget></item><item row="1" column="0"><widget class="ActionButton" name="settings_meter"><property name="minimumSize"><size><width>0</width><height>48</height></size></property><property name="text"><string>HAL 仪表
+halmeter</string></property><property name="launch_halmeter_action" stdset="0"><bool>true</bool></property></widget></item><item row="1" column="1"><widget class="ActionButton" name="settings_calibration"><property name="minimumSize"><size><width>0</width><height>48</height></size></property><property name="text"><string>调校
+Calibration</string></property><property name="launch_calibration_action" stdset="0"><bool>true</bool></property></widget></item><item row="1" column="2"><widget class="ActionButton" name="settings_halshow"><property name="minimumSize"><size><width>0</width><height>48</height></size></property><property name="text"><string>HAL 配置
+HAL Show</string></property><property name="launch_halshow_action" stdset="0"><bool>true</bool></property></widget></item></layout></item><item><widget class="QLabel" name="settingsLadderHint"><property name="text"><string>梯形图需要 HAL 已加载 classicladder_rt 组件。</string></property><property name="wordWrap"><bool>true</bool></property></widget></item><item><spacer name="settingsSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint"><size><width>1</width><height>1</height></size></property></spacer></item></layout></widget>
+<widget class="QWidget" name="interfaceSettingsPage"><attribute name="title"><string>界面选项</string></attribute><layout class="QVBoxLayout" name="interfaceSettingsLayout"><item><widget class="QCheckBox" name="settings_keyboard_jog"><property name="text"><string>启用键盘点动（方向键、PageUp / PageDown）</string></property></widget></item><item><widget class="QCheckBox" name="settings_preview_dro"><property name="text"><string>在刀路预览中叠加显示坐标</string></property></widget></item><item><widget class="QCheckBox" name="settings_fullscreen"><property name="text"><string>全屏显示（F11）</string></property></widget></item><item><widget class="QLabel" name="settingsSaveHint"><property name="text"><string>键盘点动和预览选项自动保存；急停与停止快捷键始终可用。</string></property><property name="wordWrap"><bool>true</bool></property></widget></item><item><widget class="QPushButton" name="settings_reset_view"><property name="text"><string>恢复 3D 视角</string></property></widget></item><item><spacer name="interfaceSettingsSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint"><size><width>1</width><height>1</height></size></property></spacer></item></layout></widget>
+<widget class="QWidget" name="machineInfoPage"><attribute name="title"><string>机床信息</string></attribute><layout class="QVBoxLayout" name="machineInfoLayout"><item><widget class="QLabel" name="settings_machine_info"><property name="text"><string>正在读取配置…</string></property><property name="wordWrap"><bool>true</bool></property></widget></item><item><spacer name="machineInfoSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint"><size><width>1</width><height>1</height></size></property></spacer></item></layout></widget>
+</widget></item></layout></widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="StateEnableGridLayout" name="jogPanel">
+        <property name="minimumSize"><size><width>220</width><height>218</height></size></property>
+        <property name="is_on_status" stdset="0"><bool>true</bool></property>
+        <property name="is_idle_status" stdset="0"><bool>true</bool></property>
+        <layout class="QVBoxLayout" name="jogLayout">
+         <property name="spacing"><number>5</number></property><property name="leftMargin"><number>10</number></property><property name="topMargin"><number>7</number></property><property name="rightMargin"><number>10</number></property><property name="bottomMargin"><number>7</number></property>
+         <item><widget class="QLabel" name="jogTitle"><property name="text"><string>手动点动</string></property></widget></item>
+         <item>
+          <layout class="QGridLayout" name="jogButtons">
+           <property name="horizontalSpacing"><number>6</number></property><property name="verticalSpacing"><number>5</number></property>
+           <item row="0" column="0"><widget class="ActionButton" name="jog_x_neg"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>X－</string></property><property name="jog_joint_neg_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>0</number></property><property name="axis_letter" stdset="0"><string>X</string></property></widget></item>
+           <item row="0" column="1"><widget class="ActionButton" name="jog_x_pos"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>X＋</string></property><property name="jog_joint_pos_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>0</number></property><property name="axis_letter" stdset="0"><string>X</string></property></widget></item>
+           <item row="1" column="0"><widget class="ActionButton" name="jog_y_neg"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>Y－</string></property><property name="jog_joint_neg_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>1</number></property><property name="axis_letter" stdset="0"><string>Y</string></property></widget></item>
+           <item row="1" column="1"><widget class="ActionButton" name="jog_y_pos"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>Y＋</string></property><property name="jog_joint_pos_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>1</number></property><property name="axis_letter" stdset="0"><string>Y</string></property></widget></item>
+           <item row="2" column="0"><widget class="ActionButton" name="jog_z_neg"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>Z－</string></property><property name="jog_joint_neg_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>2</number></property><property name="axis_letter" stdset="0"><string>Z</string></property></widget></item>
+           <item row="2" column="1"><widget class="ActionButton" name="jog_z_pos"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>Z＋</string></property><property name="jog_joint_pos_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>2</number></property><property name="axis_letter" stdset="0"><string>Z</string></property></widget></item>
+           <item row="0" column="2"><widget class="ActionButton" name="jog_axis4_neg"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>A－</string></property><property name="jog_joint_neg_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>3</number></property><property name="axis_letter" stdset="0"><string>A</string></property></widget></item>
+           <item row="0" column="3"><widget class="ActionButton" name="jog_axis4_pos"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>A＋</string></property><property name="jog_joint_pos_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>3</number></property><property name="axis_letter" stdset="0"><string>A</string></property></widget></item>
+           <item row="1" column="2"><widget class="ActionButton" name="jog_axis5_neg"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>B－</string></property><property name="jog_joint_neg_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>4</number></property><property name="axis_letter" stdset="0"><string>B</string></property></widget></item>
+           <item row="1" column="3"><widget class="ActionButton" name="jog_axis5_pos"><property name="minimumSize"><size><width>44</width><height>32</height></size></property><property name="text"><string>B＋</string></property><property name="jog_joint_pos_action" stdset="0"><bool>true</bool></property><property name="joint_number" stdset="0"><number>4</number></property><property name="axis_letter" stdset="0"><string>B</string></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="incrementLayout">
+           <item><widget class="QLabel" name="incrementText"><property name="text"><string>步距</string></property></widget></item>
+           <item><widget class="JogIncrements" name="jog_increment"><property name="minimumSize"><size><width>88</width><height>30</height></size></property><property name="linear_option" stdset="0"><bool>true</bool></property></widget></item>
+           <item><widget class="StatusLabel" name="jog_rate_value"><property name="minimumSize"><size><width>52</width><height>30</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="text"><string>0 mm/min</string></property><property name="textTemplate" stdset="0"><string>%4.0f</string></property><property name="alt_textTemplate" stdset="0"><string>%4.0f</string></property><property name="jograte_status" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item><widget class="StatusSlider" name="jog_rate"><property name="minimum"><number>1</number></property><property name="maximum"><number>3000</number></property><property name="value"><number>600</number></property><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="jograte_rate" stdset="0"><bool>true</bool></property></widget></item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QFrame" name="spindlePanel">
+        <property name="minimumSize"><size><width>220</width><height>218</height></size></property>
+        <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+        <layout class="QVBoxLayout" name="spindleControlLayout">
+         <property name="spacing"><number>5</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>7</number></property><property name="rightMargin"><number>8</number></property><property name="bottomMargin"><number>7</number></property>
+         <item>
+          <layout class="QHBoxLayout" name="spindleHeaderLayout">
+           <item><widget class="QLabel" name="spindleControlTitle"><property name="text"><string>主轴控制</string></property></widget></item>
+           <item><spacer name="spindleHeaderSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+           <item><widget class="QLabel" name="spindleSpeedText"><property name="text"><string>实际转速</string></property></widget></item>
+           <item><widget class="StatusLabel" name="spindle_speed"><property name="minimumSize"><size><width>70</width><height>26</height></size></property><property name="maximumSize"><size><width>90</width><height>26</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="text"><string>0 rpm</string></property><property name="textTemplate" stdset="0"><string>%5.0f rpm</string></property><property name="actual_spindle_speed_status" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="spindleButtonLayout">
+           <property name="spacing"><number>8</number></property>
+           <item><widget class="QPushButton" name="spindle_rev"><property name="checkable"><bool>true</bool></property><property name="minimumSize"><size><width>58</width><height>38</height></size></property><property name="text"><string>反转</string></property></widget></item>
+           <item><widget class="QPushButton" name="spindle_stop"><property name="checkable"><bool>true</bool></property><property name="minimumSize"><size><width>58</width><height>38</height></size></property><property name="text"><string>停止</string></property></widget></item>
+           <item><widget class="QPushButton" name="spindle_fwd"><property name="checkable"><bool>true</bool></property><property name="minimumSize"><size><width>58</width><height>38</height></size></property><property name="text"><string>正转</string></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="spindleSpeedSetLayout">
+           <property name="spacing"><number>8</number></property>
+           <item><widget class="QLabel" name="spindleCommandText"><property name="text"><string>设定转速</string></property></widget></item>
+           <item><widget class="QSpinBox" name="spindle_speed_set"><property name="minimumSize"><size><width>72</width><height>32</height></size></property><property name="buttonSymbols"><enum>QAbstractSpinBox::NoButtons</enum></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="minimum"><number>0</number></property><property name="maximum"><number>24000</number></property><property name="singleStep"><number>100</number></property><property name="value"><number>8000</number></property><property name="toolTip"><string>主轴设定转速，单位 rpm</string></property></widget></item>
+           <item><widget class="QPushButton" name="set_spindle_speed"><property name="minimumSize"><size><width>56</width><height>32</height></size></property><property name="text"><string>应用</string></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="spindleLoadHeaderLayout">
+           <item><widget class="QLabel" name="spindleLoadText"><property name="text"><string>主轴负载</string></property></widget></item>
+           <item><spacer name="spindleLoadHeaderSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+           <item><widget class="QLabel" name="spindle_load_value"><property name="minimumSize"><size><width>48</width><height>20</height></size></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="text"><string>0%</string></property></widget></item>
+          </layout>
+         </item>
+         <item><widget class="QProgressBar" name="spindle_load_bar"><property name="minimumSize"><size><width>0</width><height>24</height></size></property><property name="maximumSize"><size><width>16777215</width><height>24</height></size></property><property name="minimum"><number>0</number></property><property name="maximum"><number>150</number></property><property name="value"><number>0</number></property><property name="textVisible"><bool>false</bool></property></widget></item>
+         <item>
+          <layout class="QHBoxLayout" name="spindleLoadScaleLayout">
+           <item><widget class="QLabel" name="spindleLoadMinimum"><property name="text"><string>0%</string></property></widget></item>
+           <item><spacer name="spindleLoadScaleSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+           <item><widget class="QLabel" name="spindleLoadMaximum"><property name="text"><string>150%</string></property></widget></item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QFrame" name="overridePanel">
+        <property name="minimumSize"><size><width>220</width><height>218</height></size></property>
+        <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+        <layout class="QVBoxLayout" name="overrideLayout">
+         <property name="spacing"><number>6</number></property><property name="leftMargin"><number>8</number></property><property name="topMargin"><number>7</number></property><property name="rightMargin"><number>8</number></property><property name="bottomMargin"><number>7</number></property>
+         <item><widget class="QLabel" name="overrideTitle"><property name="text"><string>倍率控制</string></property></widget></item>
+         <item>
+          <layout class="QHBoxLayout" name="feedOverrideHeader">
+           <item><widget class="QLabel" name="feedOverrideText"><property name="text"><string>进给倍率</string></property></widget></item>
+           <item><spacer name="feedOverrideSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>10</height></size></property></spacer></item>
+           <item><widget class="StatusLabel" name="feed_override_value"><property name="minimumSize"><size><width>48</width><height>22</height></size></property><property name="maximumSize"><size><width>58</width><height>22</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="text"><string>100%</string></property><property name="textTemplate" stdset="0"><string>%3.0f%%</string></property><property name="feed_override_status" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item><widget class="StatusSlider" name="feed_override"><property name="minimumSize"><size><width>0</width><height>26</height></size></property><property name="minimum"><number>0</number></property><property name="maximum"><number>200</number></property><property name="value"><number>100</number></property><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="feed_rate" stdset="0"><bool>true</bool></property></widget></item>
+         <item>
+          <layout class="QHBoxLayout" name="rapidOverrideHeader">
+           <item><widget class="QLabel" name="rapidOverrideText"><property name="text"><string>快速倍率</string></property></widget></item>
+           <item><spacer name="rapidOverrideSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>10</height></size></property></spacer></item>
+           <item><widget class="StatusLabel" name="rapid_override_value"><property name="minimumSize"><size><width>48</width><height>22</height></size></property><property name="maximumSize"><size><width>58</width><height>22</height></size></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="text"><string>100%</string></property><property name="textTemplate" stdset="0"><string>%3.0f%%</string></property><property name="rapid_override_status" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item><widget class="StatusSlider" name="rapid_override"><property name="minimumSize"><size><width>0</width><height>26</height></size></property><property name="minimum"><number>0</number></property><property name="maximum"><number>100</number></property><property name="value"><number>100</number></property><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="rapid_rate" stdset="0"><bool>true</bool></property></widget></item>
+         <item><spacer name="overridePanelSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QFrame" name="cyclePanel">
+        <property name="minimumSize"><size><width>292</width><height>218</height></size></property>
+        <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+        <layout class="QVBoxLayout" name="cycleLayout">
+         <property name="spacing"><number>4</number></property><property name="leftMargin"><number>6</number></property><property name="topMargin"><number>5</number></property><property name="rightMargin"><number>6</number></property><property name="bottomMargin"><number>5</number></property>
+         <item>
+          <layout class="QHBoxLayout" name="cycleHeaderLayout">
+           <item><widget class="QLabel" name="cycleTitle"><property name="text"><string>程序控制</string></property></widget></item>
+           <item><spacer name="cycleHeaderSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>10</width><height>10</height></size></property></spacer></item>
+           <item><widget class="ActionButton" name="load_program"><property name="minimumSize"><size><width>92</width><height>30</height></size></property><property name="maximumSize"><size><width>110</width><height>30</height></size></property><property name="text"><string>打开程序</string></property><property name="load_dialog_action" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="runLayout">
+           <item><widget class="ActionButton" name="cycle_start"><property name="minimumSize"><size><width>88</width><height>42</height></size></property><property name="text"><string>循环启动</string></property><property name="run_action" stdset="0"><bool>true</bool></property></widget></item>
+           <item><widget class="ActionButton" name="cycle_pause"><property name="minimumSize"><size><width>88</width><height>42</height></size></property><property name="text"><string>进给保持</string></property><property name="checkable"><bool>true</bool></property><property name="pause_action" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item><widget class="ActionButton" name="cycle_stop"><property name="minimumSize"><size><width>0</width><height>32</height></size></property><property name="maximumSize"><size><width>16777215</width><height>32</height></size></property><property name="text"><string>停止 / 复位</string></property><property name="abort_action" stdset="0"><bool>true</bool></property></widget></item>
+         <item>
+          <layout class="QHBoxLayout" name="coolantLayout">
+           <property name="spacing"><number>6</number></property>
+           <item><widget class="ActionButton" name="coolant_flood"><property name="minimumSize"><size><width>96</width><height>38</height></size></property><property name="text"><string>水冷</string></property><property name="checkable"><bool>true</bool></property><property name="flood_action" stdset="0"><bool>true</bool></property></widget></item>
+           <item><widget class="ActionButton" name="coolant_mist"><property name="minimumSize"><size><width>96</width><height>38</height></size></property><property name="text"><string>气冷</string></property><property name="checkable"><bool>true</bool></property><property name="mist_action" stdset="0"><bool>true</bool></property></widget></item>
+          </layout>
+         </item>
+         <item><spacer name="cyclePanelSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property></spacer></item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QFrame" name="statusFrame">
+      <property name="minimumSize"><size><width>0</width><height>28</height></size></property>
+      <property name="maximumSize"><size><width>16777215</width><height>28</height></size></property>
+      <layout class="QHBoxLayout" name="statusLayout">
+       <property name="spacing"><number>8</number></property><property name="leftMargin"><number>9</number></property><property name="topMargin"><number>2</number></property><property name="rightMargin"><number>9</number></property><property name="bottomMargin"><number>2</number></property>
+       <item><widget class="QLabel" name="machineStatusText"><property name="text"><string>MACHINE STATUS:</string></property></widget></item>
+       <item><widget class="StatusLabel" name="machine_state_bottom"><property name="minimumSize"><size><width>96</width><height>22</height></size></property><property name="maximumSize"><size><width>140</width><height>22</height></size></property><property name="text"><string>已停止</string></property><property name="textTemplate" stdset="0"><string>%s</string></property><property name="machine_state_status" stdset="0"><bool>true</bool></property><property name="state_label_list" stdset="0"><stringlist><string>急停</string><string>运行中</string><string>已停止</string><string>已暂停</string><string>等待中</string><string>读取中</string></stringlist></property></widget></item>
+       <item><widget class="QLabel" name="startup_code_label"><property name="text"><string/></property><property name="minimumSize"><size><width>0</width><height>22</height></size></property></widget></item>
+       <item><spacer name="statusSpacer"><property name="orientation"><enum>Qt::Horizontal</enum></property><property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property></spacer></item>
+       <item><widget class="StatusLabel" name="clock"><property name="minimumSize"><size><width>145</width><height>22</height></size></property><property name="alignment"><set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set></property><property name="text"><string>00:00:00</string></property><property name="textTemplate" stdset="0"><string>%Y-%m-%d  %H:%M:%S</string></property><property name="time_stamp_status" stdset="0"><bool>true</bool></property></widget></item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget><class>LED</class><extends>QWidget</extends><header>qtvcp.widgets.led_widget</header></customwidget>
+  <customwidget><class>StateLED</class><extends>LED</extends><header>qtvcp.widgets.state_led</header></customwidget>
+  <customwidget><class>IndicatedPushButton</class><extends>QPushButton</extends><header>qtvcp.widgets.simple_widgets</header></customwidget>
+  <customwidget><class>ActionButton</class><extends>IndicatedPushButton</extends><header>qtvcp.widgets.action_button</header></customwidget>
+  <customwidget><class>DROLabel</class><extends>QLabel</extends><header>qtvcp.widgets.dro_widget</header></customwidget>
+  <customwidget><class>StatusLabel</class><extends>QLabel</extends><header>qtvcp.widgets.status_label</header></customwidget>
+  <customwidget><class>StatusSlider</class><extends>QSlider</extends><header>qtvcp.widgets.status_slider</header></customwidget>
+  <customwidget><class>JogIncrements</class><extends>QComboBox</extends><header>qtvcp.widgets.jog_increments</header></customwidget>
+  <customwidget><class>StateEnableGridLayout</class><extends>QWidget</extends><header>qtvcp.widgets.container_widgets</header><container>1</container></customwidget>
+  <customwidget><class>GCodeGraphics</class><extends>QOpenGLWidget</extends><header>qtvcp.widgets.gcode_graphics</header><container>1</container></customwidget>
+  <customwidget><class>GcodeEditor</class><extends>QWidget</extends><header>qtvcp.widgets.gcode_editor</header><container>1</container></customwidget>
+  <customwidget><class>MDILine</class><extends>QLineEdit</extends><header>qtvcp.widgets.mdi_line</header></customwidget>
+  <customwidget><class>OriginOffsetView</class><extends>QTableView</extends><header>qtvcp.widgets.origin_offsetview</header></customwidget>
+  <customwidget><class>ToolOffsetView</class><extends>QTableView</extends><header>qtvcp.widgets.tool_offsetview</header></customwidget>
+  <customwidget><class>ScreenOptions</class><extends>QWidget</extends><header>qtvcp.widgets.screen_options</header><container>1</container></customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

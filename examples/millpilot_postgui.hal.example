@@ -1,0 +1,17 @@
+# Merge ONLY the connections your machine needs into its post-GUI HAL file.
+# Manual tool change: use only when no other toolchanger owns these pins.
+# QtVCP ScreenOptions creates the hal_manualtoolchange.* pins.
+# net tool-number iocontrol.0.tool-prep-number => hal_manualtoolchange.number
+# net tool-change iocontrol.0.tool-change => hal_manualtoolchange.change
+# net tool-changed hal_manualtoolchange.changed => iocontrol.0.tool-changed
+
+# Main HAL should acknowledge preparation for a simple manual toolchanger:
+# net tool-prepared iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+
+# Optional spindle load FLOAT input: source must be real percent (0..150).
+# Replace your-vfd-load-pin with the actual HAL output before uncommenting.
+# net spindle-load-percent your-vfd-load-pin => qtvcp.spindle-load
+
+# Actual spindle RPM feedback is separate from the commanded speed.
+# Connect real measured RPM to spindle.0.speed-in in the machine HAL.
+# Keep your existing enable, direction, PWM and feedback wiring.
